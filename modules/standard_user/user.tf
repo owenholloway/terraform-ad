@@ -1,11 +1,14 @@
-variable container      { default = "CN=Users,DC=contoso,DC=com" }
+
 
 resource "ad_user" "operational_user" {
-  principal_name            = "${var.first} ${var.last}"
-  sam_account_name          = var.logon
-  display_name              = "${var.first} ${var.last}"
-  container                 = var.container
-  initial_password          = random_password.password.result
+  principal_name   = "${var.first} ${var.last}"
+  sam_account_name = var.logon
+  display_name     = "${var.first} ${var.last}"
+  container        = var.container
+  initial_password = random_password.password.result
+  custom_attributes = jsonencode({
+    "updated" : "${timestamp()}"
+  })
   city                      = "My City"
   company                   = "The Company Co Pty Ltd"
   country                   = "AU"
@@ -34,5 +37,7 @@ resource "ad_user" "operational_user" {
   surname                   = var.last
   title                     = ""
   smart_card_logon_required = false
-  trusted_for_delegation    = true
+  trusted_for_delegation    = false
+  enabled                   = !var.disabled
+  password_never_expires    = var.password_never_expires
 }
