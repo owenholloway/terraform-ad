@@ -16,16 +16,14 @@ terraform {
 
 module "test_user_0" {
   source    = "./modules/standard_user"
-  first     = "test"
-  last      = "user"
-  logon     = "test"
-  email     = "test@test.com"
+  first     = "Test"
+  last      = "Zero"
+  logon     = "test.zero"
 }
 
 module "test_user_1" {
   source    = "./modules/standard_user"
-  first     = "test"
-  last      = "user"
-  logon     = "test"
-  email     = "test@test.com"
+  first     = "Test"
+  last      = "One"
+  logon     = "test.one"
 }
