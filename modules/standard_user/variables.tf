@@ -28,3 +28,12 @@ variable "password_never_expires" {
   type    = bool
   default = true
 }
+
+variable "ad_credentials" {
+  type = map(string)
+  default = {
+    "winrm_hostname" = "test"
+    "winrm_username" = "test"
+    "winrm_password" = "test"
+  }
+}
